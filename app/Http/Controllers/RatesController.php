@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rate;
 use Illuminate\Http\Request;
 
 class RatesController extends Controller
@@ -13,7 +14,8 @@ class RatesController extends Controller
      */
     public function index()
     {
-        //
+        // Browse (index.blade.php)
+        Return view('rates.index');
     }
 
     /**
@@ -23,7 +25,8 @@ class RatesController extends Controller
      */
     public function create()
     {
-        //
+        // Add (create.blade.php)
+        Return view('rates.create');
     }
 
     /**
@@ -45,7 +48,8 @@ class RatesController extends Controller
      */
     public function show($id)
     {
-        //
+        // Read (show.blade.php)
+        Return view('rates.show');
     }
 
     /**
@@ -56,7 +60,8 @@ class RatesController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Edit (update.blade.php)
+        Return view('rates.update');
     }
 
     /**
@@ -79,6 +84,7 @@ class RatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete (delete.blade.php)
+        Return view('rates.delete');
     }
 }
