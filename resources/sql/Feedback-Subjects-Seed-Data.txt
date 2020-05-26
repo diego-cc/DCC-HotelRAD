@@ -1,0 +1,7 @@
+ID      NAME            DESCRIPTION
+1       General         General Enquiry/Comments
+2       Booking         Booking Enquiry / Room Availability
+3       Thank You       Message to thank the hotel/staff
+4       Complaint       Had a problem with your booking or stay
+5       Help            Assistance Required
+6       Bug             Problem with the application/web site

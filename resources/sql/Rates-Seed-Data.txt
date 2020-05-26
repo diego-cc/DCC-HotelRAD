@@ -1,0 +1,8 @@
+RATE            DESCRIPTION
+50.00           Single Room Rate, 1 Person
+80.00           Double Room Rate, 1 Person
+90.00           Double Room Rate, 2+ Persons
+90.00           Executive Room Rate, 1 Person
+100.00          Executive Room Rate, 2+ Persons
+150.00          Princess Room Rate, 1 Person
+180.00          Princess Room Rate, 2+ Persons

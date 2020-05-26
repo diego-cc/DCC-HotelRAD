@@ -1,0 +1,7 @@
+NAME            DESCRIPTION
+AVBL            Available
+SERV            Service Required
+MAIN            Maintenance Required
+OOSV            Out of Service
+UNAV            Unavailable
+OCCP            Occupied
