@@ -14,9 +14,9 @@ class RatesController extends Controller
      */
     public function index()
     {
-        // get all rates
+        // get all rates, sorted by latest updated
         // A better approach: pagination
-        $rates = Rate::latest()->get();
+        $rates = Rate::orderBy('updated_at', 'desc')->get();
 
         // Display all rates (index.blade.php)
         return view('rates.index', compact('rates'));
@@ -48,7 +48,7 @@ class RatesController extends Controller
         ]));
 
         // show new rate (show.blade.php)
-        return view(route('rates.show', compact('rate')));
+        return view('rates.show', compact('rate'));
     }
 
     /**
