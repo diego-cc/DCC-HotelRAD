@@ -9,82 +9,108 @@ class RatesController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * GET /rates
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Browse (index.blade.php)
-        Return view('rates.index');
+        // get all rates
+        // A better approach: pagination
+        $rates = Rate::latest()->get();
+
+        // Display all rates (index.blade.php)
+        return view('rates.index', compact('rates'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * GET /rates/create
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        // Add (create.blade.php)
-        Return view('rates.create');
+        // View form to add a new rate (create.blade.php)
+        return view('rates.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
+     * POST /rates
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        // validate and add a new rate
+        $rate = Rate::create($request->validate([
+            'rate' => 'bail|required|max:999999.99',
+            'description' => 'bail|required|max: 48'
+        ]));
+
+        // show new rate (show.blade.php)
+        return view(route('rates.show', compact('rate')));
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
+     * GET /rates/{rate}
+     * @param  Rate $rate
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Rate $rate)
     {
         // Read (show.blade.php)
-        Return view('rates.show');
+        return view('rates.show', compact('rate'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
+     * GET /rates/{rate}/edit
+     * @param  Rate $rate
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Rate $rate)
     {
-        // Edit (update.blade.php)
-        Return view('rates.update');
+        // View form to edit a rate
+        return view('rates.update', compact('rate'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
+     * PUT /rates/{rate}
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Rate $rate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rate $rate)
     {
-        //
+        // validate and update rate
+        $rate->update($request->validate([
+            'rate' => 'bail|required|max:999999.99',
+            'description' => 'bail|required|max: 48'
+        ]));
+
+        // redirect to updated rate
+        return redirect(route('rates.show'));
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * DELETE /rates/{rate}
+     * @param  Rate $rate
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Rate $rate)
     {
-        // Delete (delete.blade.php)
-        Return view('rates.delete');
+        // Delete a rate
+        try {
+            $rate->delete();
+        }
+        catch(\Exception $e) {
+            // TODO: handle this case (e.g. rate not found or could not connect to database)
+            dd($e);
+        } finally {
+            return redirect(route('rates.index'));
+        }
     }
 }
