@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resources([
     'rates' => 'RatesController',
-    'feedback_subjects' => 'FeedbackSubjectsController'
+    'feedback_subjects' => 'FeedbackSubjectsController',
+    'room_statuses' => 'RoomStatusesController'
                  ]);
 // Route::resource('rates', 'RatesController');

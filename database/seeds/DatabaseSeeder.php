@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RateSeeder::class);
         $this->call(FeedbackSubjectSeeder::class);
+        $this->call(RoomStatusSeeder::class);
     }
 }
