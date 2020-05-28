@@ -42,8 +42,8 @@
             <div class="d-flex flex-row justify-content-center">
                 <a href="{{route('rates.edit', $rate)}}" class="btn btn-warning mr-5">Edit</a>
 
-                @includeIf('utils.delete')
-                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-rate-{{$rate->id}}">Delete</button>
+                @includeIf('utils.delete', ['resource' => $rate, 'type' => 'rate'])
+                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$rate->id}}">Delete</button>
             </div>
 
             <div class="d-flex justify-content-center _browse-all-btn">

@@ -11,7 +11,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="rate">Rate</label>
+                <label for="rate">Rate <span class="text-danger">*</span></label>
                 <input
                     required="required"
                     type="number"
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Description (maximum 48 characters)</label>
+                <label for="description">Description <span class="text-danger">*</span> (maximum 48 characters)</label>
                 <textarea
                     required="required"
                     name="description"
