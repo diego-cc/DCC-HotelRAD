@@ -35,9 +35,9 @@ Run all migrations and seeds:
 Move the project to your `www` directory (server root), start your PHP server of choice and navigate to any of these URLs (specifying the port that your server is running on):
 
 ```
-http://localhost/dcc-hotelrad/rates
-http://localhost/dcc-hotelrad/feedback_subjects
-http://localhost/dcc-hotelrad/room_statuses
+http://localhost/dcc-hotelrad/public/rates
+http://localhost/dcc-hotelrad/public/feedback_subjects
+http://localhost/dcc-hotelrad/public/room_statuses
 ```
 
 If you're using Laragon, the URLs below are also valid:
