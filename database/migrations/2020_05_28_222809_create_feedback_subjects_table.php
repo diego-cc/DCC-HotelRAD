@@ -17,7 +17,7 @@ class CreateFeedbackSubjectsTable extends Migration
             $table->id();
             $table->string('subject', 24);
             $table->string('description', 255);
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

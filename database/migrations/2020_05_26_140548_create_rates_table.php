@@ -18,7 +18,7 @@ class CreateRatesTable extends Migration
             $table->id();
             $table->unsignedDecimal('rate')->default(0.00);
             $table->string('description', 48);
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 
