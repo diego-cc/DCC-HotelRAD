@@ -3,7 +3,7 @@
     Rates: Browse
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <h1 class="text-center mb-5">All rates</h1>
 
         <div class="text-center mb-5">
@@ -35,10 +35,12 @@
                         <td class="text-center">{{\Carbon\Carbon::parse($rate->created_at)->isoFormat('LLLL')}}</td>
                         <td class="text-center">{{$rate->updated_at ? \Carbon\Carbon::parse($rate->updated_at)->isoFormat('LLLL') : 'Never'}}</td>
                         <td>
-                            <a href="{{route('rates.show', $rate)}}" class="btn btn-info mr-4">View</a>
-                            <a href="{{route('rates.edit', $rate)}}" class="btn btn-warning mr-4">Edit</a>
-                            @includeIf('utils.delete')
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#delete-rate-{{$rate->id}}">Delete</button>
+                            <div class="d-flex justify-content-center">
+                                <a href="{{route('rates.show', $rate)}}" class="btn btn-info mr-4">View</a>
+                                <a href="{{route('rates.edit', $rate)}}" class="btn btn-warning mr-4">Edit</a>
+                                @includeIf('utils.delete')
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-rate-{{$rate->id}}">Delete</button>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

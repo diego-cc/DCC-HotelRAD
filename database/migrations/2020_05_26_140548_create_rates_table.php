@@ -19,8 +19,7 @@ class CreateRatesTable extends Migration
                 $table->id();
                 $table->unsignedDecimal('rate')->default(0.00);
                 $table->string('description', 48);
-                $table->dateTime('created_at')->default(now('Australia/Perth'));
-                $table->dateTime('updated_at')->nullable()->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'));
+                $table->timestamps();
             });
         }
     }

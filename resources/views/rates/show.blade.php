@@ -2,6 +2,11 @@
 @section('title')
     Rates: Read
 @endsection
+
+@section('styles')
+    <link href="/css/rates/show.css" rel="stylesheet" />
+@endsection
+
 @section('content')
     <div class="container">
         <h1 class="text-center mb-5">Viewing details of a rate with ID: {{$rate->id}}</h1>
@@ -41,8 +46,8 @@
                 <button class="btn btn-danger" data-toggle="modal" data-target="#delete-rate-{{$rate->id}}">Delete</button>
             </div>
 
-            <div class="d-flex justify-content-center _browse-all-btn mt-5">
-                <a href="{{route('rates.index')}}" class="btn btn-lg btn-primary">Browse all rates</a>
+            <div class="d-flex justify-content-center _browse-all-btn">
+                <a href="{{route('rates.index')}}" class="text-info h5">Browse all rates</a>
             </div>
         </div>
     </div>

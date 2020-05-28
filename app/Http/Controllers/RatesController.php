@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RatesController extends Controller
 {
@@ -43,7 +44,7 @@ class RatesController extends Controller
     {
         // validate and add a new rate
         $rate = Rate::create($request->validate([
-            'rate' => 'bail|required|max:999999.99',
+            'rate' => 'bail|required|min:0.00|max:999999.99',
             'description' => 'bail|required|max: 48'
         ]));
 
@@ -85,13 +86,17 @@ class RatesController extends Controller
     public function update(Request $request, Rate $rate)
     {
         // validate and update rate
-        $rate->update($request->validate([
-            'rate' => 'bail|required|max:999999.99',
-            'description' => 'bail|required|max: 48'
-        ]));
+        $rate->update(
+            $request->validate(
+                [
+                    'rate' => 'bail|required|min:0.00|max:999999.99',
+                    'description' => 'bail|required|max: 48'
+                ]
+            )
+        );
 
         // redirect to updated rate
-        return redirect(route('rates.show'));
+        return redirect(route('rates.show', $rate));
     }
 
     /**

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <h1>Add a new rate</h1>
+        <h1 class="text-center mb-5">Add a new rate</h1>
 
 
         <form action="{{route('rates.store')}}" method="POST">
@@ -47,10 +47,16 @@
             </div>
 
             <div class="d-flex justify-content-center mt-5">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-lg btn-primary" type="submit">
                     Submit
                 </button>
             </div>
         </form>
+
+        <div class="d-flex justify-content-center mt-5">
+            <a class="text-info h5" href="{{route('rates.index')}}">
+                Browse all rates
+            </a>
+        </div>
     </div>
 @endsection
