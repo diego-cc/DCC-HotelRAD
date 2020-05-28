@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,42 +17,54 @@ class RoomStatusSeeder extends Seeder
         DB::table('room_statuses')->insert(
             [
                 'name' => 'AVBL',
-                'description' => 'Available'
+                'description' => 'Available',
+                'created_at' => Carbon::now('Australia/Perth'),
+                'updated_at' => null
             ]
         );
 
         DB::table('room_statuses')->insert(
             [
                 'name' => 'SERV',
-                'description' => 'Service Required'
+                'description' => 'Service Required',
+                'created_at' => Carbon::now('Australia/Perth'),
+                'updated_at' => null
             ]
         );
 
         DB::table('room_statuses')->insert(
             [
                 'name' => 'MAIN',
-                'description' => 'Maintenance Required'
+                'description' => 'Maintenance Required',
+                'created_at' => Carbon::now('Australia/Perth'),
+                'updated_at' => null
             ]
         );
 
         DB::table('room_statuses')->insert(
             [
                 'name' => 'OOSV',
-                'description' => 'Out of Service'
+                'description' => 'Out of Service',
+                'created_at' => Carbon::now('Australia/Perth'),
+                'updated_at' => null
             ]
         );
 
         DB::table('room_statuses')->insert(
             [
                 'name' => 'UNAV',
-                'description' => 'Unavailable'
+                'description' => 'Unavailable',
+                'created_at' => Carbon::now('Australia/Perth'),
+                'updated_at' => null
             ]
         );
 
         DB::table('room_statuses')->insert(
             [
                 'name' => 'OCCP',
-                'description' => 'Occupied'
+                'description' => 'Occupied',
+                'created_at' => Carbon::now('Australia/Perth'),
+                'updated_at' => null
             ]
         );
     }

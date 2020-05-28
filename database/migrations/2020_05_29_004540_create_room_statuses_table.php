@@ -17,7 +17,7 @@ class CreateRoomStatusesTable extends Migration
             $table->id();
             $table->string('name', 16);
             $table->string('description', 255);
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 
