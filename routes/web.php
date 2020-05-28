@@ -21,4 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('rates', 'RatesController');
+Route::resources([
+    'rates' => 'RatesController',
+    'feedback_subjects' => 'FeedbackSubjectsController'
+                 ]);
+// Route::resource('rates', 'RatesController');

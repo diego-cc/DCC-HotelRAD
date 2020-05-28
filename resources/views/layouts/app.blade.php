@@ -33,8 +33,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="navbar-nav mr-auto ml-5">
+                        <li
+                            class=
+                            "nav-item mr-4
+                                {{\Illuminate\Support\Facades\Route::currentRouteName() === 'rates.index' ? 'active' : ''}}
+                            "
+                        >
+                            <a class="nav-link" href="{{route('rates.index')}}">Rates</a>
+                        </li>
+                        <li
+                            class="nav-item {{\Illuminate\Support\Facades\Route::currentRouteName() === 'feedback_subjects.index' ? 'active' : ''}}"
+                        >
+                            <a class="nav-link" href="{{route('feedback_subjects.index')}}">Feedback Subjects</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

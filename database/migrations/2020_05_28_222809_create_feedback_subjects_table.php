@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRatesTable extends Migration
+class CreateFeedbackSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,10 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
+        Schema::create('feedback_subjects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedDecimal('rate')->default(0.00);
-            $table->string('description', 48);
+            $table->string('subject', 24);
+            $table->string('description', 255);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('feedback_subjects');
     }
 }
