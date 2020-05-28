@@ -4,7 +4,7 @@
 @endsection
 
 @section('styles')
-    <link href="/css/rates/show.css" rel="stylesheet" />
+    <link href="/css/rates/show.css" rel="stylesheet"/>
 @endsection
 
 @section('content')
@@ -43,7 +43,9 @@
                 <a href="{{route('room_statuses.edit', $roomStatus)}}" class="btn btn-warning mr-5">Edit</a>
 
                 @includeIf('utils.delete', ['type' => 'roomStatus', 'resource'=> $roomStatus])
-                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$roomStatus->id}}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$roomStatus->id}}">
+                    Delete
+                </button>
             </div>
 
             <div class="d-flex justify-content-center _browse-all-btn">

@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\RoomStatus;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 
+/**
+ * Class RoomStatusesController Handles /room_statuses endpoints
+ * @package App\Http\Controllers
+ */
 class RoomStatusesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
@@ -24,7 +33,7 @@ class RoomStatusesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
@@ -35,17 +44,19 @@ class RoomStatusesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return View
      */
     public function store(Request $request)
     {
         // validate and add a new room status
         $roomStatus = RoomStatus::create(
-            $request->validate([
-                'name' => 'bail|required|max:16',
-                'description' => 'bail|required|max:255'
-            ])
+            $request->validate(
+                [
+                    'name' => 'bail|required|max:16',
+                    'description' => 'bail|required|max:255'
+                ]
+            )
         );
 
         // show new room status (show.blade.php)
@@ -55,8 +66,8 @@ class RoomStatusesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RoomStatus  $roomStatus
-     * @return \Illuminate\Http\Response
+     * @param  RoomStatus  $roomStatus
+     * @return View
      */
     public function show(RoomStatus $roomStatus)
     {
@@ -67,8 +78,8 @@ class RoomStatusesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RoomStatus  $roomStatus
-     * @return \Illuminate\Http\Response
+     * @param  RoomStatus  $roomStatus
+     * @return View
      */
     public function edit(RoomStatus $roomStatus)
     {
@@ -79,9 +90,9 @@ class RoomStatusesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RoomStatus  $roomStatus
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  RoomStatus  $roomStatus
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(Request $request, RoomStatus $roomStatus)
     {
@@ -102,16 +113,15 @@ class RoomStatusesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RoomStatus  $roomStatus
-     * @return \Illuminate\Http\Response
+     * @param  RoomStatus  $roomStatus
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(RoomStatus $roomStatus)
     {
         // Delete a room status
         try {
             $roomStatus->delete();
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             // TODO: handle this case (e.g. resource not found or could not connect to database)
             dd($e);
         } finally {

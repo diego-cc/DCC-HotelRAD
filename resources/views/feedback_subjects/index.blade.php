@@ -7,7 +7,8 @@
         <h1 class="text-center mb-5">All feedback subjects</h1>
 
         <div class="text-center mb-5">
-            <a href="{{route('feedback_subjects.create')}}" class="btn btn-lg btn-primary">Add a new feedback subject</a>
+            <a href="{{route('feedback_subjects.create')}}" class="btn btn-lg btn-primary">Add a new feedback
+                subject</a>
         </div>
 
         @if (count($fs) < 1)
@@ -15,7 +16,7 @@
         @endif
 
         @if (count($fs) > 0)
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive-sm">
                 <thead class="thead-dark">
                 <tr>
                     <th class="text-center" scope="col">ID</th>
@@ -36,10 +37,14 @@
                         <td class="text-center">{{$feedbackSubject->updated_at ? \Carbon\Carbon::parse($feedbackSubject->updated_at)->isoFormat('LLLL') : 'Never'}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="{{route('feedback_subjects.show', $feedbackSubject)}}" class="btn btn-info mr-4">View</a>
-                                <a href="{{route('feedback_subjects.edit', $feedbackSubject)}}" class="btn btn-warning mr-4">Edit</a>
+                                <a href="{{route('feedback_subjects.show', $feedbackSubject)}}"
+                                   class="btn btn-info mr-4">View</a>
+                                <a href="{{route('feedback_subjects.edit', $feedbackSubject)}}"
+                                   class="btn btn-warning mr-4">Edit</a>
                                 @includeIf('utils.delete', ['resource' => $feedbackSubject, 'type' => 'feedbackSubject'])
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$feedbackSubject->id}}">Delete</button>
+                                <button class="btn btn-danger" data-toggle="modal"
+                                        data-target="#delete-resource-{{$feedbackSubject->id}}">Delete
+                                </button>
                             </div>
                         </td>
                     </tr>

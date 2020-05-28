@@ -4,7 +4,7 @@
 @endsection
 
 @section('styles')
-    <link href="/css/rates/show.css" rel="stylesheet" />
+    <link href="/css/rates/show.css" rel="stylesheet"/>
 @endsection
 
 @section('content')
@@ -43,7 +43,8 @@
                 <a href="{{route('rates.edit', $rate)}}" class="btn btn-warning mr-5">Edit</a>
 
                 @includeIf('utils.delete', ['resource' => $rate, 'type' => 'rate'])
-                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$rate->id}}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$rate->id}}">Delete
+                </button>
             </div>
 
             <div class="d-flex justify-content-center _browse-all-btn">

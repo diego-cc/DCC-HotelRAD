@@ -15,7 +15,7 @@
         @endif
 
         @if (count($rates) > 0)
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive-sm">
                 <thead class="thead-dark">
                 <tr>
                     <th class="text-center" scope="col">ID</th>
@@ -39,7 +39,9 @@
                                 <a href="{{route('rates.show', $rate)}}" class="btn btn-info mr-4">View</a>
                                 <a href="{{route('rates.edit', $rate)}}" class="btn btn-warning mr-4">Edit</a>
                                 @includeIf('utils.delete', ['resource' => $rate, 'type' => 'rate'])
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#delete-resource-{{$rate->id}}">Delete</button>
+                                <button class="btn btn-danger" data-toggle="modal"
+                                        data-target="#delete-resource-{{$rate->id}}">Delete
+                                </button>
                             </div>
                         </td>
                     </tr>

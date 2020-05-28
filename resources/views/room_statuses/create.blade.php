@@ -23,7 +23,7 @@
                 />
 
                 @error('name')
-                    <p class="text-danger">{{$errors->first('name')}}</p>
+                <p class="text-danger">{{$errors->first('name')}}</p>
                 @enderror
             </div>
 
@@ -39,7 +39,7 @@
                     maxlength="255">{{old('description')}}</textarea>
 
                 @error('description')
-                    <p class="text-danger">{{$errors->first('description')}}</p>
+                <p class="text-danger">{{$errors->first('description')}}</p>
                 @enderror
             </div>
 

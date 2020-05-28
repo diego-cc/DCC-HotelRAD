@@ -8,13 +8,15 @@
  * Version: 1.0.0
  * Description: add short description of file's purpose
  **********************************************************/
+
 ?>
 
 {{--This is the delete modal used by the index and update views of all three features--}}
 
 @switch ($type)
     @case('rate')
-    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}" aria-labelledby="deleteResourceModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}"
+         aria-labelledby="deleteResourceModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -26,11 +28,15 @@
                 <div class="modal-body text-center">
                     <h5 class="mb-4">You are about to delete this rate:</h5>
                     <div class="list-group list-group-flush mb-4">
-                        <p class="list-group-item">Rate ID: <span class="font-weight-bolder">{{$resource->id}}</span></p>
-                        <p class="list-group-item">Rate: <span class="text-success font-weight-bold">&#36; {{$resource->rate}}</span></p>
+                        <p class="list-group-item">Rate ID: <span class="font-weight-bolder">{{$resource->id}}</span>
+                        </p>
+                        <p class="list-group-item">Rate: <span
+                                class="text-success font-weight-bold">&#36; {{$resource->rate}}</span></p>
                         <p class="list-group-item">Description: {{$resource->description}}</p>
-                        <p class="list-group-item">Date created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
-                        <p class="list-group-item">Date updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
+                        <p class="list-group-item">Date
+                            created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
+                        <p class="list-group-item">Date
+                            updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
                     </div>
                     <h5 class="mb-3">Are you sure?</h5>
                 </div>
@@ -48,7 +54,8 @@
     @break
 
     @case('feedbackSubject')
-    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}" aria-labelledby="deleteResourceModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}"
+         aria-labelledby="deleteResourceModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -60,11 +67,15 @@
                 <div class="modal-body text-center">
                     <h5 class="mb-4">You are about to delete this feedback subject:</h5>
                     <div class="list-group list-group-flush mb-4">
-                        <p class="list-group-item">Feedback Subject ID: <span class="font-weight-bolder">{{$resource->id}}</span></p>
-                        <p class="list-group-item">Subject: <span class="font-weight-bold">{{$resource->subject}}</span></p>
+                        <p class="list-group-item">Feedback Subject ID: <span
+                                class="font-weight-bolder">{{$resource->id}}</span></p>
+                        <p class="list-group-item">Subject: <span class="font-weight-bold">{{$resource->subject}}</span>
+                        </p>
                         <p class="list-group-item">Description: {{$resource->description}}</p>
-                        <p class="list-group-item">Date created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
-                        <p class="list-group-item">Date updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
+                        <p class="list-group-item">Date
+                            created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
+                        <p class="list-group-item">Date
+                            updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
                     </div>
                     <h5 class="mb-3">Are you sure?</h5>
                 </div>
@@ -82,7 +93,8 @@
     @break
 
     @case('roomStatus')
-    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}" aria-labelledby="deleteResourceModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}"
+         aria-labelledby="deleteResourceModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -94,11 +106,14 @@
                 <div class="modal-body text-center">
                     <h5 class="mb-4">You are about to delete this room status:</h5>
                     <div class="list-group list-group-flush mb-4">
-                        <p class="list-group-item">Room status ID: <span class="font-weight-bolder">{{$resource->id}}</span></p>
+                        <p class="list-group-item">Room status ID: <span
+                                class="font-weight-bolder">{{$resource->id}}</span></p>
                         <p class="list-group-item">Name: <span class="font-weight-bold">{{$resource->name}}</span></p>
                         <p class="list-group-item">Description: {{$resource->description}}</p>
-                        <p class="list-group-item">Date created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
-                        <p class="list-group-item">Date updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
+                        <p class="list-group-item">Date
+                            created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
+                        <p class="list-group-item">Date
+                            updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
                     </div>
                     <h5 class="mb-3">Are you sure?</h5>
                 </div>
@@ -116,6 +131,6 @@
     @break
 
     @default
-        <h1>Fix the delete modal!!</h1>
+    <h1>Fix the delete modal!!</h1>
 @endswitch
 

@@ -18,12 +18,12 @@
                     id="subject"
                     name="subject"
                     placeholder="Subject"
-                    max="24"
+                    maxlength="24"
                     value="{{old('subject')}}"
                 />
 
                 @error('subject')
-                    <p class="text-danger">{{$errors->first('subject')}}</p>
+                <p class="text-danger">{{$errors->first('subject')}}</p>
                 @enderror
             </div>
 
@@ -39,7 +39,7 @@
                     maxlength="255">{{old('description')}}</textarea>
 
                 @error('description')
-                    <p class="text-danger">{{$errors->first('description')}}</p>
+                <p class="text-danger">{{$errors->first('description')}}</p>
                 @enderror
             </div>
 

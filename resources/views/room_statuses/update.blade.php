@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-   Room statuses: Edit
+    Room statuses: Edit
 @endsection
 @section('content')
     <div class="container">
@@ -11,7 +11,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="subject">Status name <span class="text-danger">*</span> (maximum 16 characters)</label>
+                <label for="name">Status name <span class="text-danger">*</span> (maximum 16 characters)</label>
                 <input
                     required="required"
                     type="text"
@@ -24,7 +24,7 @@
                 />
 
                 @error('name')
-                    <p class="text-danger">{{$errors->first('name')}}</p>
+                <p class="text-danger">{{$errors->first('name')}}</p>
                 @enderror
             </div>
 
@@ -40,7 +40,7 @@
                     maxlength="255">{{$roomStatus->description}}</textarea>
 
                 @error('description')
-                    <p class="text-danger">{{$errors->first('description')}}</p>
+                <p class="text-danger">{{$errors->first('description')}}</p>
                 @enderror
             </div>
 

@@ -19,7 +19,7 @@
                     id="subject"
                     name="subject"
                     placeholder="Subject"
-                    max="24"
+                    maxlength="24"
                     value="{{$feedbackSubject->subject}}"
                 />
 

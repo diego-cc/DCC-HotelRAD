@@ -13,17 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get(
+    '/',
+    function () {
+        return view('welcome');
+    }
+);
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resources([
-    'rates' => 'RatesController',
-    'feedback_subjects' => 'FeedbackSubjectsController',
-    'room_statuses' => 'RoomStatusesController'
-                 ]);
-// Route::resource('rates', 'RatesController');
+Route::resources(
+    [
+        'rates' => 'RatesController',
+        'feedback_subjects' => 'FeedbackSubjectsController',
+        'room_statuses' => 'RoomStatusesController'
+    ]
+);

@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Rate;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
+/**
+ * Class RatesController Handles /rates endpoints
+ * @package App\Http\Controllers
+ */
 class RatesController extends Controller
 {
     /**
      * Display a listing of the resource.
      * GET /rates
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
@@ -26,7 +34,7 @@ class RatesController extends Controller
     /**
      * Show the form for creating a new resource.
      * GET /rates/create
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
@@ -37,16 +45,20 @@ class RatesController extends Controller
     /**
      * Store a newly created resource in storage.
      * POST /rates
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return View
      */
     public function store(Request $request)
     {
         // validate and add a new rate
-        $rate = Rate::create($request->validate([
-            'rate' => 'bail|required|min:0.00|max:999999.99',
-            'description' => 'bail|required|max: 48'
-        ]));
+        $rate = Rate::create(
+            $request->validate(
+                [
+                    'rate' => 'bail|required|min:0.00|max:999999.99',
+                    'description' => 'bail|required|max: 48'
+                ]
+            )
+        );
 
         // show new rate (show.blade.php)
         return view('rates.show', compact('rate'));
@@ -55,8 +67,8 @@ class RatesController extends Controller
     /**
      * Display the specified resource.
      * GET /rates/{rate}
-     * @param  Rate $rate
-     * @return \Illuminate\Http\Response
+     * @param  Rate  $rate
+     * @return View
      */
     public function show(Rate $rate)
     {
@@ -67,8 +79,8 @@ class RatesController extends Controller
     /**
      * Show the form for editing the specified resource.
      * GET /rates/{rate}/edit
-     * @param  Rate $rate
-     * @return \Illuminate\Http\Response
+     * @param  Rate  $rate
+     * @return View
      */
     public function edit(Rate $rate)
     {
@@ -79,9 +91,9 @@ class RatesController extends Controller
     /**
      * Update the specified resource in storage.
      * PUT /rates/{rate}
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Rate $rate
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Rate  $rate
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(Request $request, Rate $rate)
     {
@@ -102,16 +114,15 @@ class RatesController extends Controller
     /**
      * Remove the specified resource from storage.
      * DELETE /rates/{rate}
-     * @param  Rate $rate
-     * @return \Illuminate\Http\Response
+     * @param  Rate  $rate
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(Rate $rate)
     {
         // Delete a rate
         try {
             $rate->delete();
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             // TODO: handle this case (e.g. rate not found or could not connect to database)
             dd($e);
         } finally {
