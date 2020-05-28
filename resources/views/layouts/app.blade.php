@@ -7,7 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @if (View::hasSection('title'))
+            @yield('title')
+        @else
+            {{ config('app.name', 'Laravel') }}
+        @endif
+    </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -43,9 +49,18 @@
                             <a class="nav-link" href="{{route('rates.index')}}">Rates</a>
                         </li>
                         <li
-                            class="nav-item {{\Illuminate\Support\Facades\Route::currentRouteName() === 'feedback_subjects.index' ? 'active' : ''}}"
+                            class="nav-item mr-4
+                                {{\Illuminate\Support\Facades\Route::currentRouteName() === 'feedback_subjects.index' ? 'active' : ''}}
+                            "
                         >
                             <a class="nav-link" href="{{route('feedback_subjects.index')}}">Feedback Subjects</a>
+                        </li>
+                        <li
+                            class="nav-item
+                                {{\Illuminate\Support\Facades\Route::currentRouteName() === 'room_statuses.index' ? 'active' : ''}}
+                            "
+                        >
+                            <a class="nav-link" href="{{route('room_statuses.index')}}">Room statuses</a>
                         </li>
                     </ul>
 

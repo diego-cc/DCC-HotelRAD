@@ -115,7 +115,7 @@ class RoomStatusesController extends Controller
             // TODO: handle this case (e.g. resource not found or could not connect to database)
             dd($e);
         } finally {
-            return redirect(route('room_status.index'));
+            return redirect(route('room_statuses.index'));
         }
     }
 }
