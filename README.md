@@ -10,6 +10,8 @@ It includes all BREAD (Browse, Read, Edit, Add, Delete) actions and views for:
 
 ## Setup instructions
 
+Make sure you have installed PHP (7.4+), MariaDB (10.4+) and composer before proceeding.
+
 ### 1. Clone the repository
 
 `git clone https://github.com/diego-cc/DCC-HotelRAD.git`
@@ -18,19 +20,23 @@ It includes all BREAD (Browse, Read, Edit, Add, Delete) actions and views for:
 
 `cd DCC-HotelRAD`
 
-### 3. Create the database
+### 3. Install packages
+
+`composer install`
+
+### 4. Create the database
 
 Move to the `resources/sql` directory and run the [SQL code](https://github.com/diego-cc/DCC-HotelRAD/blob/master/resources/sql/hotel-rad-db.sql "hotel-rad-db.sql") to create the database and user:
 
 `mysql -u root -p < hotel-rad-db.sql`
 
-### 4. Seed database
+### 5. Seed database
 
-Run all migrations and seeds:
+Move back to the project's root directory (DCC-HotelRAD) and run all migrations and seeds:
 
 `php artisan migrate:fresh --seed`
 
-### 5. Run the application
+### 6. Run the application
 
 Move the project to your `www` directory (server root), start your PHP server of choice and navigate to any of these URLs (specifying the port that your server is running on):
 
