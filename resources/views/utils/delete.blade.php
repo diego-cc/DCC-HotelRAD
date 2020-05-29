@@ -2,16 +2,16 @@
 /**********************************************************
  * Package: ${PACKAGE_NAME}
  * Project: dcc-hotelrad
- * File:
+ * File: resources/views/utils/delete.blade.php
  * Author: Diego <20026893@tafe.wa.edu.au>
  * Date: 2020-05-28
  * Version: 1.0.0
- * Description: add short description of file's purpose
+ * Description: Delete confirmation modal used by all three features
  **********************************************************/
 
 ?>
 
-{{--This is the delete modal used by the index and update views of all three features--}}
+{{--This is the delete modal used by the index and show views of all three features--}}
 
 @switch ($type)
     @case('rate')

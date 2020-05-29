@@ -12,6 +12,10 @@ class CreateFeedbackSubjectsTable extends Migration
     /**
      * Run the migrations.
      *
+     * Notes:
+     * - nullableTimestamps() instead of timestamps() allows the updated_at column of the initial seed data to be null when a new entry is added
+     * - It does NOT work for any subsequent entries, because Eloquent sets updated_at to current_timestamp by default (this behaviour is intentional)
+     * - One possible workaround is to set the $timestamps property to false in each model, but then they have to be managed manually everywhere
      * @return void
      */
     public function up()
