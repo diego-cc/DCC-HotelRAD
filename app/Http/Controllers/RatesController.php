@@ -23,9 +23,8 @@ class RatesController extends Controller
      */
     public function index()
     {
-        // get all rates, sorted by latest updated
-        // A better approach: pagination
-        $rates = Rate::orderBy('updated_at', 'desc')->get();
+        // get all rates, then sort by latest updated
+        $rates = DB::table('rates')->orderBy('updated_at', 'desc')->paginate(5);
 
         // Display all rates (index.blade.php)
         return view('rates.index', compact('rates'));
