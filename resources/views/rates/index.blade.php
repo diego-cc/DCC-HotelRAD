@@ -28,7 +28,6 @@
                 </thead>
                 <tbody>
                 @foreach($rates as $rate)
-                    {{ var_dump($rate)  }}
                     <tr>
                         <th class="text-center" scope="row">{{$rate->id}}</th>
                         <td class="text-center text-success font-weight-bold">&#36; {{$rate->rate}}</td>
@@ -37,19 +36,22 @@
                         <td class="text-center">{{$rate->updated_at ? \Carbon\Carbon::parse($rate->updated_at)->isoFormat('LLLL') : 'Never'}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="" class="btn btn-info mr-4">View</a>
-                                {{--<a href="{{route('rates.edit', $rate)}}" class="btn btn-warning mr-4">Edit</a>
-                                @includeIf('utils.delete', ['resource' => $rate->id, 'type' => 'rate'])
+                                <a href="{{route('rates.show', $rate->id)}}" class="btn btn-info mr-4">View</a>
+                                <a href="{{route('rates.edit', $rate->id)}}" class="btn btn-warning mr-4">Edit</a>
+                                @includeIf('utils.delete', ['resource' => $rate, 'type' => 'rate'])
                                 <button class="btn btn-danger" data-toggle="modal"
                                         data-target="#delete-resource-{{$rate->id}}">Delete
-                                </button>--}}
+                                </button>
                             </div>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            {{ $rates->links()  }}
+            <div class="d-flex justify-content-center mt-5">
+                {{ $rates->links() }}
+            </div>
+
         @endif
     </div>
 @endsection

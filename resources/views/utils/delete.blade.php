@@ -42,7 +42,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancel</button>
-                    <form action="{{route('rates.destroy', $resource)}}" method="POST">
+                    <form action="{{route('rates.destroy', $resource->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="btn btn-danger">Confirm</button>
