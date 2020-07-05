@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
 
 use App\UserType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class UserTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        //
+        $userTypes = DB::table('user_types')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(5);
+
+        return view('user_types.index', compact('userTypes'));
     }
 
     /**

@@ -37,9 +37,9 @@
                         <td class="text-center">{{$feedbackSubject->updated_at ? \Carbon\Carbon::parse($feedbackSubject->updated_at)->isoFormat('LLLL') : 'Never'}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="{{route('feedback_subjects.show', $feedbackSubject)}}"
+                                <a href="{{route('feedback_subjects.show', $feedbackSubject->id)}}"
                                    class="btn btn-info mr-4">View</a>
-                                <a href="{{route('feedback_subjects.edit', $feedbackSubject)}}"
+                                <a href="{{route('feedback_subjects.edit', $feedbackSubject->id)}}"
                                    class="btn btn-warning mr-4">Edit</a>
                                 @includeIf('utils.delete', ['resource' => $feedbackSubject, 'type' => 'feedbackSubject'])
                                 <button class="btn btn-danger" data-toggle="modal"
@@ -51,6 +51,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-5">
+                {{ $fs->links() }}
+            </div>
         @endif
     </div>
 @endsection

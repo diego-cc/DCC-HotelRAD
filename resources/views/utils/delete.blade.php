@@ -81,7 +81,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancel</button>
-                    <form action="{{route('feedback_subjects.destroy', $resource)}}" method="POST">
+                    <form action="{{route('feedback_subjects.destroy', $resource->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="btn btn-danger">Confirm</button>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancel</button>
-                    <form action="{{route('room_statuses.destroy', $resource)}}" method="POST">
+                    <form action="{{route('room_statuses.destroy', $resource->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="btn btn-danger">Confirm</button>

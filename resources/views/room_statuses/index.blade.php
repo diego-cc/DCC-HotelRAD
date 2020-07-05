@@ -36,9 +36,9 @@
                         <td class="text-center">{{$roomStatus->updated_at ? \Carbon\Carbon::parse($roomStatus->updated_at)->isoFormat('LLLL') : 'Never'}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="{{route('room_statuses.show', $roomStatus)}}"
+                                <a href="{{route('room_statuses.show', $roomStatus->id)}}"
                                    class="btn btn-info mr-4">View</a>
-                                <a href="{{route('room_statuses.edit', $roomStatus)}}"
+                                <a href="{{route('room_statuses.edit', $roomStatus->id)}}"
                                    class="btn btn-warning mr-4">Edit</a>
                                 @includeIf('utils.delete', ['resource' => $roomStatus, 'type' => 'roomStatus'])
                                 <button class="btn btn-danger" data-toggle="modal"
@@ -50,6 +50,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-5">
+                {{ $roomStatuses->links() }}
+            </div>
         @endif
     </div>
 @endsection

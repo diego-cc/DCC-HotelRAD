@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 /**
@@ -24,7 +25,9 @@ class RoomStatusesController extends Controller
     public function index()
     {
         // get all room statuses, sorted by latest updated
-        $roomStatuses = RoomStatus::orderBy('updated_at', 'desc')->get();
+        $roomStatuses = DB::table('room_statuses')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(5);
 
         // Display all room statuses (index.blade.php)
         return view('room_statuses.index', compact('roomStatuses'));

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 /**
@@ -23,7 +24,9 @@ class FeedbackSubjectsController extends Controller
     public function index()
     {
         // get all feedback subjects, sorted by latest updated
-        $fs = FeedbackSubject::orderBy('updated_at', 'desc')->get();
+        $fs = DB::table('feedback_subjects')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(5);
 
         // display subjects
         return view('feedback_subjects.index', compact('fs'));
