@@ -117,3 +117,5 @@ modules.xml
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/laravel,composer,phpstorm+all
+
+icons/

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserType extends Model
 {
-    protected $fillable = ['type', 'description', 'icon'];
+    protected $fillable = ['description', 'icon', 'type'];
 }

@@ -16,7 +16,7 @@ class CreateUserTypesTable extends Migration
         Schema::create('user_types', function (Blueprint $table) {
             $table->id();
             $table->string('type', 128);
-            $table->string('description', 255);
+            $table->string('description', 255)->nullable();
             $table->string('icon', 255)->nullable();
             $table->nullableTimestamps();
         });

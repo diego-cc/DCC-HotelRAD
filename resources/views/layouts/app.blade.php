@@ -58,12 +58,28 @@
                         <a class="nav-link" href="{{route('feedback_subjects.index')}}">Feedback Subjects</a>
                     </li>
                     <li
-                        class="nav-item
+                        class="nav-item mr-4
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'room_statuses.index' ? 'active' : ''}}
                             "
                     >
                         <a class="nav-link" href="{{route('room_statuses.index')}}">Room statuses</a>
                     </li>
+
+                    <li
+                        class="nav-item mr-4
+                                {{\Illuminate\Support\Facades\Route::currentRouteName() === 'user_types.index' ? 'active' : ''}}
+                            "
+                    >
+                        <a class="nav-link" href="{{route('user_types.index')}}">User types</a>
+                    </li>
+
+                   {{-- <li
+                        class="nav-item
+                                {{\Illuminate\Support\Facades\Route::currentRouteName() === 'users.index' ? 'active' : ''}}
+                            "
+                    >
+                        <a class="nav-link" href="{{route('users.index')}}">Users</a>
+                    </li>--}}
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -108,5 +124,9 @@
         @yield('content')
     </main>
 </div>
+
+@if (View::hasSection('scripts'))
+   @yield('scripts')
+@endif
 </body>
 </html>

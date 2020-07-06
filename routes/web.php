@@ -28,6 +28,7 @@ Route::resources(
     [
         'rates' => 'RatesController',
         'feedback_subjects' => 'FeedbackSubjectsController',
-        'room_statuses' => 'RoomStatusesController'
+        'room_statuses' => 'RoomStatusesController',
+        'user_types' => 'UserTypesController'
     ]
 );

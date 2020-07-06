@@ -4,42 +4,51 @@
 @endsection
 @section('content')
     <div class="container">
-        <h1 class="text-center mb-5">Add a new rate</h1>
+        <h1 class="text-center mb-5">Add a new user type</h1>
 
 
-        <form action="{{route('rates.store')}}" method="POST">
+        <form action="{{route('user_types.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
-                <label for="rate">Rate <span class="text-danger">*</span></label>
+                <div>
+                    <p>Icon</p>
+                </div>
+
+                <div id="icon-container" class="mb-4" style="display:none;">
+                    <img src="" alt="" id="icon-img" style="max-width: 300px; display: block;" />
+                </div>
+
+                <input type="file" name="icon" id="icon" placeholder="Choose an icon..." class="mb-4" />
+
+            </div>
+            <div class="form-group">
+                <label for="type">Type <span class="text-danger">*</span></label>
                 <input
                     required="required"
-                    type="number"
-                    class="form-control form-control-lg"
-                    id="rate"
-                    name="rate"
-                    placeholder="0.00"
-                    step="0.01"
-                    min="0"
-                    max="999999.99"
-                    value="{{old('rate')}}"
+                    type="text"
+                    id="type"
+                    name="type"
+                    maxlength="128"
+                    class="form-control"
+                    placeholder="User type..."
+                    value="{{old('type')}}"
                 />
 
-                @error('rate')
-                <p class="text-danger">{{$errors->first('rate')}}</p>
+                @error('type')
+                <p class="text-danger">{{$errors->first('type')}}</p>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="description">Description <span class="text-danger">*</span> (maximum 48 characters)</label>
+                <label for="description">Description (maximum 255 characters)</label>
                 <textarea
-                    required="required"
                     name="description"
                     class="form-control"
                     id="description"
                     rows="5"
-                    placeholder="Room description..."
-                    maxlength="48">{{old('description')}}</textarea>
+                    placeholder="User type description..."
+                    maxlength="255">{{old('description')}}</textarea>
 
                 @error('description')
                 <p class="text-danger">{{$errors->first('description')}}</p>
@@ -54,9 +63,38 @@
         </form>
 
         <div class="d-flex justify-content-center mt-5">
-            <a class="text-info h5" href="{{route('rates.index')}}">
-                Browse all rates
+            <a class="text-info h5" href="{{route('user_types.index')}}">
+                Browse all user types
             </a>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const iconContainer = document.getElementById('icon-container');
+        const iconImg = document.getElementById('icon-img');
+        const icon = document.getElementById('icon');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            icon.addEventListener('change', function(e) {
+                if (!e.target.value) {
+                    iconImg.setAttribute('src', '');
+                    iconImg.setAttribute('alt', '');
+                    iconContainer.style.display = 'none';
+                }
+                else {
+                    const reader = new FileReader();
+
+                    reader.onload = e => {
+                        iconImg.setAttribute('src', e.target.result);
+                        iconImg.setAttribute('alt', 'New icon');
+                        iconContainer.style.display = 'block';
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+    </script>
 @endsection
