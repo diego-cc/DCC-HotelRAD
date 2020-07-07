@@ -41,46 +41,54 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto ml-5">
-                    <li
-                        class=
-                        "nav-item mr-4
+                @if (
+                        Auth::user() &&
+                        (Auth::user()->user_type_id === \App\UserType::whereRaw('lower(type) LIKE ?', ['%administrator%'])->value('id') ||
+                        Auth::user()->user_type_id === \App\UserType::whereRaw('lower(type) LIKE ?', ['%manager%'])->value('id'))
+                    )
+
+                    <ul class="navbar-nav mr-auto ml-5">
+                        <li
+                            class=
+                            "nav-item mr-4
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'rates.index' ? 'active' : ''}}
-                            "
-                    >
-                        <a class="nav-link" href="{{route('rates.index')}}">Rates</a>
-                    </li>
-                    <li
-                        class="nav-item mr-4
+                                "
+                        >
+                            <a class="nav-link" href="{{route('rates.index')}}">Rates</a>
+                        </li>
+                        <li
+                            class="nav-item mr-4
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'feedback_subjects.index' ? 'active' : ''}}
-                            "
-                    >
-                        <a class="nav-link" href="{{route('feedback_subjects.index')}}">Feedback Subjects</a>
-                    </li>
-                    <li
-                        class="nav-item mr-4
+                                "
+                        >
+                            <a class="nav-link" href="{{route('feedback_subjects.index')}}">Feedback Subjects</a>
+                        </li>
+                        <li
+                            class="nav-item mr-4
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'room_statuses.index' ? 'active' : ''}}
-                            "
-                    >
-                        <a class="nav-link" href="{{route('room_statuses.index')}}">Room statuses</a>
-                    </li>
+                                "
+                        >
+                            <a class="nav-link" href="{{route('room_statuses.index')}}">Room statuses</a>
+                        </li>
 
-                    <li
-                        class="nav-item mr-4
+                        <li
+                            class="nav-item mr-4
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'user_types.index' ? 'active' : ''}}
-                            "
-                    >
-                        <a class="nav-link" href="{{route('user_types.index')}}">User types</a>
-                    </li>
+                                "
+                        >
+                            <a class="nav-link" href="{{route('user_types.index')}}">User types</a>
+                        </li>
 
-                    <li
-                        class="nav-item
+                        <li
+                            class="nav-item
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'users.index' ? 'active' : ''}}
-                            "
-                    >
-                        <a class="nav-link" href="{{route('users.index')}}">Users</a>
-                    </li>
-                </ul>
+                                "
+                        >
+                            <a class="nav-link" href="{{route('users.index')}}">Users</a>
+                        </li>
+                    </ul>
+                @endif
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
