@@ -173,6 +173,46 @@
         </div>
     </div>
     @break
+
+    @case('user')
+    <div class="modal fade" tabindex="-1" role="dialog" id="delete-resource-{{$resource->id}}"
+         aria-labelledby="deleteResourceModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm delete</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h5 class="mb-4">You are about to delete this user:</h5>
+                    <div class="list-group list-group-flush mb-4">
+                        <p class="list-group-item">User ID: <span
+                                class="font-weight-bolder">{{$resource->id}}</span></p>
+                        <p class="list-group-item">Name: <span class="font-weight-bold">{{$resource->name}}</span></p>
+                        <p class="list-group-item{{trim(strtolower($user->type)) === 'administrator' ? ' font-weight-bold text-danger' : ''}}">Type: {{$resource->type}}</p>
+                        <p class="list-group-item">Email: {{$resource->email}}</p>
+                        <p class="list-group-item">Email verified at: {{$resource->email_verified_at ? \Carbon\Carbon::parse($resource->email_verified_at)->isoFormat('LLLL') : 'Never'}}</p>
+                        <p class="list-group-item">Date
+                            created: {{\Carbon\Carbon::parse($resource->created_at)->isoFormat('LLLL')}}</p>
+                        <p class="list-group-item">Date
+                            updated: {{$resource->updated_at ? \Carbon\Carbon::parse($resource->updated_at)->isoFormat('LLLL') : 'Never'}}</p>
+                    </div>
+                    <h5 class="mb-3">Are you sure?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cancel</button>
+                    <form action="{{route('users.destroy', $resource->id)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @break
     @default
     <h1>Fix the delete modal!!</h1>
 @endswitch

@@ -73,13 +73,13 @@
                         <a class="nav-link" href="{{route('user_types.index')}}">User types</a>
                     </li>
 
-                   {{-- <li
+                    <li
                         class="nav-item
                                 {{\Illuminate\Support\Facades\Route::currentRouteName() === 'users.index' ? 'active' : ''}}
                             "
                     >
                         <a class="nav-link" href="{{route('users.index')}}">Users</a>
-                    </li>--}}
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

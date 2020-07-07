@@ -1,33 +1,50 @@
 @extends('layouts.app')
 @section('title')
-    Users: Edit
+    Users: Change type
 @endsection
 @section('content')
     @if (isset($msg))
         @includeIf('utils.alert', compact('msg'))
     @endif
-
     <div class="container">
-        <h1 class="text-center mb-5">Editing a user with ID: {{$user->id}}</h1>
+        <h1 class="text-center mb-5">Changing type of user with ID: {{$user->id}}</h1>
 
-        <form action="{{route('users.update', $user)}}" method="POST">
+        <form action="{{route('users.update_type', $user)}}" method="POST">
             @method('PUT')
             @csrf
 
             <div class="form-group">
-                <label for="name">Name <span class="text-danger">*</span></label>
+                <label for="name">Name</label>
                 <input
                     required="required"
                     type="text"
                     id="name"
                     name="name"
                     maxlength="32"
-                    class="form-control"
+                    class="form-control disabled"
+                    disabled
                     value="{{$user->name}}"
                 />
 
                 @error('name')
                 <p class="text-danger">{{$errors->first('name')}}</p>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required="required"
+                    class="form-control disabled"
+                    value="{{$user->email}}"
+                    disabled
+                />
+
+                @error('email')
+                <p class="text-danger">{{$errors->first('email')}}</p>
                 @enderror
             </div>
 
@@ -48,50 +65,6 @@
                 @error('user_type_id')
                 <p class="text-danger">{{$errors->first('user_type_id')}}</p>
                 @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email <span class="text-danger">*</span></label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required="required"
-                    class="form-control"
-                    value="{{$user->email}}"
-                />
-
-                @error('email')
-                    <p class="text-danger">{{$errors->first('email')}}</p>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password <span class="text-danger">*</span></label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required="required"
-                    class="form-control"
-                    placeholder="******"
-                    minlength="6"
-                    maxlength="128"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="confirm_password">Confirm password <span class="text-danger">*</span></label>
-                <input
-                    type="password"
-                    id="confirm_password"
-                    name="confirm_password"
-                    required="required"
-                    class="form-control"
-                    placeholder="******"
-                    minlength="6"
-                    maxlength="128"
-                >
             </div>
 
             <div class="d-flex justify-content-center mt-5">
