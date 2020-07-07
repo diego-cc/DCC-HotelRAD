@@ -134,6 +134,6 @@ class UserTypesController extends Controller
         Storage::delete($userType->icon);
         $userType->delete();
 
-        return redirect()->route('user_types.index')->with('success', 'User type successfully deleted');
+        return redirect()->route('user_types.index')->with('success', 'UsersController type successfully deleted');
     }
 }

@@ -20,10 +20,10 @@ class CreateUsersTable extends Migration
                 ->references('id')
                 ->on('user_types')
                 ->onUpdate('cascade');
-            $table->string('name');
+            $table->string('name', 32);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password', 128);
             $table->rememberToken();
             $table->timestamps();
         });
