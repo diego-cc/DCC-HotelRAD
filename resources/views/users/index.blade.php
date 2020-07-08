@@ -51,10 +51,12 @@
                             <div class="d-flex justify-content-center">
                                 <a href="{{route('users.show', $user->id)}}" class="btn btn-info mr-4">View</a>
                                 <a href="{{route('users.edit_type', $user->id)}}" class="btn btn-warning mr-4">Change type</a>
-                                @includeIf('utils.delete', ['resource' => $user, 'type' => 'user'])
-                                <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete-resource-{{$user->id}}">Delete
-                                </button>
+                                @if (trim(strtolower($user->type)) !== 'administrator')
+                                    @includeIf('utils.delete', ['resource' => $user, 'type' => 'user'])
+                                    <button class="btn btn-danger" data-toggle="modal"
+                                            data-target="#delete-resource-{{$user->id}}">Delete
+                                    </button>
+                                @endif
                             </div>
                         </td>
                     </tr>

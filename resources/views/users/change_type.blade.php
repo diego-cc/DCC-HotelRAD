@@ -52,14 +52,27 @@
                 <label for="user_type_id">User type <span class="text-danger">*</span></label>
 
                 <select id="user_type_id" name="user_type_id" class="custom-select" required="required">
-                    @foreach($userTypes as $ut)
-                        @if ($ut->id === $user->user_type_id)
-                            <option value="{{$ut->id}}" selected>{{$ut->type}}</option>
-                        @else
-                            <option value="{{$ut->id}}">{{$ut->type}}</option>
-                        @endif
+                    @if (\Illuminate\Support\Facades\Auth::user()->user_type_id === \App\UserType::whereRaw('lower(type) LIKE ?', ['%administrator%'])->value('id'))
+                        @foreach($userTypes as $ut)
+                            @if ($ut->id === $user->user_type_id)
+                                <option value="{{$ut->id}}" selected>{{$ut->type}}</option>
+                            @else
+                                <option value="{{$ut->id}}">{{$ut->type}}</option>
+                            @endif
+                        @endforeach
 
-                    @endforeach
+                    @else
+                        @foreach($userTypes as $ut)
+                            @if ($ut->id === $user->user_type_id)
+                                <option value="{{$ut->id}}" selected>{{$ut->type}}</option>
+                            @else
+                                @if (trim(strtolower($ut->type)) !== 'administrator')
+                                    <option value="{{$ut->id}}">{{$ut->type}}</option>
+                                @endif
+                            @endif
+                        @endforeach
+                    @endif
+
                 </select>
 
                 @error('user_type_id')

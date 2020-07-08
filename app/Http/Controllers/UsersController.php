@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\UserType;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -66,7 +68,14 @@ class UsersController extends Controller
             ]
         );
 
-        $user = User::create($data);
+        $user = User::create(
+            [
+                'name' => $data['name'],
+                'user_type_id' => $data['user_type_id'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password'])
+            ]
+        );
 
         $user->type = DB::table('user_types')
             ->where('id', $user->user_type_id)
@@ -110,16 +119,19 @@ class UsersController extends Controller
         return view('users.update', compact('user', 'userTypes'));
     }
 
-    public function editType(User $user) {
+    public function editType(User $user)
+    {
+        $user->password = null;
+
         $user->type = DB::table('user_types')
             ->where('id', $user->user_type_id)
             ->value('type');
 
         $userTypes = UserType::all();
 
-        $user->password = null;
         return view('users.change_type', compact('user', 'userTypes'));
     }
+
     /**
      * Update a user's type
      *
@@ -129,6 +141,17 @@ class UsersController extends Controller
      */
     public function updateType(Request $request, User $user)
     {
+        $currentUser = Auth::user();
+        $adminId = \App\UserType::whereRaw('lower(type) LIKE ?', ['%administrator%'])->value('id');
+
+        if ($user->user_type_id === $adminId &&
+            $currentUser->user_type_id !== $adminId
+        ) {
+            $msg = 'You are not authorised to change this user\'s type';
+            $userTypes = UserType::all();
+            return view('users.change_type', compact('user', 'userTypes', 'msg'));
+        }
+
         $user->update(
             $request->validate(
                 [
@@ -151,11 +174,18 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $currentUser = Auth::user();
+        $user->password = null;
+
+        if ($currentUser->id !== $user->id) {
+            $msg = 'You are not authorised to update another user\'s details';
+            $userTypes = UserType::all();
+            return view('users.update', compact('user', 'userTypes', 'msg'));
+        }
+
         if ($request->password !== $request->confirm_password) {
             $msg = 'Passwords do not match';
             $userTypes = UserType::all();
-
-            $user->password = null;
             return view('users.update', compact('user', 'userTypes', 'msg'));
         }
 
@@ -190,6 +220,16 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        $currentUser = Auth::user();
+        $adminId = \App\UserType::whereRaw('lower(type) LIKE ?', ['%administrator%'])->value('id');
+
+        if ($user->user_type_id === $adminId &&
+            $currentUser->user_type_id !== $adminId
+        ) {
+            $msg = 'You are not authorised to delete this user';
+            return view('users.index', compact('msg'));
+        }
+
         try {
             $user->delete();
             return redirect(route('users.index'));
