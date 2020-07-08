@@ -2,8 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Authorise;
 use App\Http\Middleware\BlockIfNotAuthenticated;
 use App\Http\Middleware\CheckAdminOrManager;
+use App\Http\Middleware\CreateUserProfile;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -58,6 +60,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'admin.or.manager' => CheckAdminOrManager::class,
+        'authorise' => Authorise::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
@@ -66,5 +69,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'create.user.profile' => CreateUserProfile::class
     ];
 }

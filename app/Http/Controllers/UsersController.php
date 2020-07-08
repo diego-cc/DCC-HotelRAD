@@ -77,6 +77,14 @@ class UsersController extends Controller
             ]
         );
 
+        // create user profile
+        DB::table('profiles')
+            ->insert(
+                [
+                    'user_id' => $user->id
+                ]
+            );
+
         $user->type = DB::table('user_types')
             ->where('id', $user->user_type_id)
             ->value('type');

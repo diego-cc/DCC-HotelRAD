@@ -119,3 +119,4 @@ modules.xml
 # End of https://www.gitignore.io/api/laravel,composer,phpstorm+all
 
 icons/
+pics/
