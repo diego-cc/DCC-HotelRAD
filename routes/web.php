@@ -23,9 +23,11 @@ Route::get(
 
 Auth::routes();
 
-
-Route::group(['middleware' => 'auth'], function() {
+Route::middleware(['auth'])->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Route::middleware(['admin.or.manager'])->group(function() {
     Route::get('users/{user}/edit_type', 'UsersController@editType')->name('users.edit_type');
     Route::put('users/{user}/update_type', 'UsersController@updateType')->name('users.update_type');
 
