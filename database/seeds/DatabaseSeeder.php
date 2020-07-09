@@ -1,5 +1,6 @@
 <?php
 
+use App\Room;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RateSeeder::class);
         $this->call(FeedbackSubjectSeeder::class);
         $this->call(RoomStatusSeeder::class);
+        $this->call(RoomTypeSeeder::class);
+
+        factory(Room::class, 5)->create();
     }
 }

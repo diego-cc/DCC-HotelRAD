@@ -1,3 +1,4 @@
+// FIELDS
 const pic = document.getElementById('pic');
 const picOriginal = pic.value;
 const givenName = document.getElementById('given_name');
@@ -7,6 +8,7 @@ const familyNameOriginal = familyName.value;
 const dob = document.getElementById('dob');
 const dobOriginal = dob.value;
 
+// PICS
 const newPicContainer = document.getElementById('new-pic-container');
 const newPic = document.getElementById('new-pic');
 
@@ -118,6 +120,10 @@ async function toggleProfilePic(toggle) {
     }
 }
 
+/**
+ * Removes or restores the current profile pic in the DOM
+ * @param {boolean} remove
+ */
 function toggleProfileImg(remove) {
     if (remove) {
         removeProfilePicBtn.textContent = 'Undo'
