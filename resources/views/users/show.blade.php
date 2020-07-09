@@ -51,7 +51,7 @@
                 </p>
             </div>
 
-            <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex flex-row justify-content-center mb-5">
                 <a href="{{route('users.edit_type', $user)}}" class="btn btn-warning">Change type</a>
 
                 @if (trim(strtolower($user->type)) !== 'administrator')
@@ -60,6 +60,23 @@
                     </button>
                 @endif
             </div>
+
+            <hr class="mb-5">
+
+            <h2 class="text-center mb-4">Profile</h2>
+            <div class="text-center">
+                @if(isset($user->profile->pic))
+                    <img src="/{{$user->profile->pic}}" alt="Profile picture" style="max-width: 300px;" class="mb-4">
+                @endif
+                <p class="mb-4">Given name: {{$user->profile->given_name ?? 'Not provided'}}</p>
+                <p class="mb-4">Family name: {{$user->profile->family_name ?? 'Not provided'}}</p>
+                <p class="mb-4">Date of birth: {{$user->profile->dob ? \Carbon\Carbon::parse($user->profile->dob)->isoFormat('DD/MM/YYYY') : 'Not provided'}}</p>
+                <p class="mb-4">Date created: {{\Carbon\Carbon::parse($user->created_at)->isoFormat('LLLL')}}</p>
+                <p class="mb-4">Date updated: {{\Carbon\Carbon::parse($user->updated_at)->isoFormat('LLLL')}}</p>
+
+            </div>
+
+
 
             <div class="d-flex justify-content-center _browse-all-btn mt-5">
                 <a href="{{route('users.index')}}" class="text-info h5">Browse all users</a>

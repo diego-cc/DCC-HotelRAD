@@ -23,6 +23,7 @@ class CreateProfilesTable extends Migration
             $table->string('given_name', 128)->nullable();
             $table->string('family_name', 128)->nullable();
             $table->date('dob')->nullable();
+            $table->boolean('remove_pic')->default(false);
             $table->timestamps();
         });
     }

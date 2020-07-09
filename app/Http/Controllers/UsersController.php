@@ -106,6 +106,11 @@ class UsersController extends Controller
             ->value('type');
 
         $user->password = null;
+
+        $user->profile = DB::table('profiles')
+                            ->where('user_id', $user->id)
+                            ->first();
+
         return view('users.show', compact('user'));
     }
 

@@ -97,6 +97,12 @@ class ProfilesController extends Controller
             Storage::delete($profile->pic);
         }
 
+        if ($profile->remove_pic) {
+            // delete current profile pic
+            Storage::delete($profile->pic);
+            $profile->pic = null;
+        }
+
         DB::table('profiles')
             ->where('user_id', $profile->user_id)
             ->update(
@@ -104,13 +110,14 @@ class ProfilesController extends Controller
                     'pic' => $request->pic ?? $profile->pic,
                     'given_name' => $data['given_name'],
                     'family_name' => $data['family_name'],
-                    'dob' => $data['dob']
+                    'dob' => $data['dob'],
+                    'remove_pic' => false
                 ]
             );
 
         $profile = $this->mapUser($profile);
 
-        return redirect(route('profiles.edit', compact('profile')));
+        return redirect(route('profiles.edit', compact('profile')))->with('msg', 'Profile updated');
     }
 
     /**
@@ -122,6 +129,29 @@ class ProfilesController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    public function togglePic(Request $request, Profile $profile)
+    {
+        $data = $request->validate(
+            [
+                'user_id' => 'bail|required|exists:users,id',
+                'remove_pic' => 'bail|required|boolean'
+            ]
+        );
+
+        $profile->update(
+            [
+                'remove_pic' => $data['remove_pic']
+            ]
+        );
+
+        return response()->json(
+            [
+                'remove_pic' => $profile->remove_pic,
+                'status' => 200
+            ]
+        );
     }
 
     /**

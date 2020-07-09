@@ -54,5 +54,8 @@ Route::middleware(['auth', 'authorise'])->group(
                 'profiles' => 'ProfilesController'
             ]
         );
+
+        Route::put('profiles/{profile}/toggle_pic', 'ProfilesController@togglePic')
+            ->name('profiles.toggle_pic');
     }
 );
