@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+  db:
+    image: hotel-rad-db
+    build:
+      context: ./resources/sql
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: hotel-rad-db
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mariadb
+    volumes:
+      - ./resources/sql/init:/docker-entrypoint-initdb.d
+    networks:
+      - hotelrad
+
+  app:
+    build:
+      args:
+        user: hotel_rad_user
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: hotel-rad-app
+    container_name: hotel-rad-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - hotelrad
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:alpine
+    container_name: hotel-rad-nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - hotelrad
+
+networks:
+  hotelrad:
+    driver: bridge
