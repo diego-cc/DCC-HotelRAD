@@ -49,6 +49,9 @@ RUN mkdir -p /home/$user/.composer && \
 # Upgrade packages
 RUN composer upgrade
 
+# Install packages
+RUN composer install
+
 # Run migrations and seeds
 # RUN php artisan migrate:fresh --seed
 
