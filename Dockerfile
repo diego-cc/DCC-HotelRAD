@@ -46,9 +46,6 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
-# Upgrade packages
-# RUN composer upgrade
-
 # Install packages
 RUN composer install --optimize-autoloader --no-dev
 
@@ -56,7 +53,7 @@ RUN composer install --optimize-autoloader --no-dev
 # RUN php artisan migrate:fresh --seed
 
 # Optimisations
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
+RUN php artisan key:generate && php artisan config:cache && php artisan route:cache && php artisan view:cache
 
 EXPOSE 80
 USER ${user}
