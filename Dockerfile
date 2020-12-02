@@ -47,13 +47,16 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 # Upgrade packages
-RUN composer upgrade
+# RUN composer upgrade
 
 # Install packages
-RUN composer install
+RUN composer install --optimize-autoloader --no-dev
 
 # Run migrations and seeds
 # RUN php artisan migrate:fresh --seed
+
+# Optimisations
+RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
 EXPOSE 80
 USER ${user}
