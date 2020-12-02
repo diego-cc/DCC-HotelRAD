@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www
     environment:
-      VIRTUAL_HOST: localhost
+      VIRTUAL_HOST: hotelrad.diegocc.com
       LETSENCRYPT_HOST: hotelrad.diegocc.com
     volumes:
       - ./:/var/www
