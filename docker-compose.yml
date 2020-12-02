@@ -32,6 +32,7 @@ services:
     working_dir: /var/www
     environment:
       VIRTUAL_HOST: hotelrad.diegocc.com
+      LETSENCRYPT_HOST: hotelrad.diegocc.com
     volumes:
       - ./:/var/www
     networks:
