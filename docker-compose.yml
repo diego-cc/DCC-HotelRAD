@@ -30,6 +30,8 @@ services:
     container_name: hotel-rad-app
     restart: unless-stopped
     working_dir: /var/www
+    environment:
+      VIRTUAL_HOST: hotelrad.diegocc.com
     volumes:
       - ./:/var/www
     networks:
@@ -37,17 +39,17 @@ services:
     depends_on:
       - db
 
-  nginx:
-    image: nginx:alpine
-    container_name: hotel-rad-nginx
-    restart: unless-stopped
-    ports:
-      - 80:80
-    volumes:
-      - ./:/var/www
-      - ./nginx:/etc/nginx/conf.d
-    networks:
-      - hotelrad
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: hotel-rad-nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./:/var/www
+  #     - ./nginx:/etc/nginx/conf.d
+  #   networks:
+  #     - hotelrad
 
 networks:
   hotelrad:

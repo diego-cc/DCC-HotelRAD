@@ -55,4 +55,5 @@ RUN composer install
 # Run migrations and seeds
 # RUN php artisan migrate:fresh --seed
 
+EXPOSE 80
 USER ${user}
