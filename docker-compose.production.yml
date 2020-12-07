@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  db:
+    image: diegocc/hms-db-prod
+    restart: always
+    container_name: hotel-rad-db
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: prod
+      SERVICE_NAME: mariadb
+    networks:
+      - hotelrad
+
+  app_nginx:
+    image: diegocc/hms-app-prod
+    container_name: hotel-rad-app
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - hotelrad
+    depends_on:
+      - db
+
+networks:
+  hotelrad:

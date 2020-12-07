@@ -120,3 +120,8 @@ modules.xml
 
 icons/
 pics/
+
+# Production config
+Dockerfile.prod
+hotel-rad-db.prod.sql
+.env.prod

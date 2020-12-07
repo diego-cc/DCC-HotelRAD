@@ -1,4 +1,4 @@
-FROM mariadb:latest
+FROM mariadb
 
 WORKDIR /db
 
